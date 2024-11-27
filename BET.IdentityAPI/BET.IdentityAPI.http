@@ -1,0 +1,6 @@
+@BET.IdentityAPI_HostAddress = http://localhost:5124
+
+GET {{BET.IdentityAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
