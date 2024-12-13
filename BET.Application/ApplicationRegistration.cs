@@ -29,6 +29,7 @@ namespace BET.Application
             services.AddScoped<IExpensesValidator, ExpensesValidator>();
             services.AddScoped<IPaymentsService, PaymentsService>();
             services.AddScoped<IPaymentsValidator, PaymentsValidator>();
+            services.AddScoped<IReportService, ReportService>();
         }
     }
 }

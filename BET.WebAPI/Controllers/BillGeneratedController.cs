@@ -52,10 +52,10 @@ namespace BET.WebAPI.Controllers
         }
 
         [HttpPut("update/{id}")]
-        public async Task<IActionResult> UpdateAsync(BillGenerated entity)
+        public async Task<IActionResult> UpdateAsync(Guid id ,BillGenerated entity)
         {
             var response = new Response<string>();
-            await _billGeneratedService.UpdateBillGeneratedAsync(entity);
+            await _billGeneratedService.UpdateBillGeneratedAsync(id, entity);
             _logger.LogInformation("Updated Successfully {id} ",entity.Id);
             response.Data = "Updated Successfully";
             return Ok(response);

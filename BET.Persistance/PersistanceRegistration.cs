@@ -1,4 +1,8 @@
-﻿using BET.Persistance.Repositories;
+﻿using BET.Application.Contracts.ExcelInfrastructure;
+using BET.Application.Contracts.IServices;
+using BET.Application.Features;
+using BET.Infrastructure.Excel;
+using BET.Persistance.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +21,8 @@ namespace BET.Persistance
             services.AddScoped<IIncomeRepository,IncomeRepository>();
             services.AddScoped<IExpensesRepository,ExpensesRepository>();
             services.AddScoped<IPaymentsRepository,PaymentsRepository>();
+            services.AddScoped<IReportRepository, ReportRepository>();
+            services.AddScoped<IExcelExporter,ExcelExporter>();
         }
     }
 }

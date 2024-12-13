@@ -8,7 +8,7 @@ namespace BET.Application.Contracts.IServices
         Task<IEnumerable<Expenses>> GetAllExpensesAsync();
         Task<Expenses> GetByIdExpensesAsync(Guid id);
         Task<Guid> AddExpensesAsync(Expenses entity);
-        Task UpdateExpensesAsync(Expenses entity);
+        Task UpdateExpensesAsync(Guid id, Expenses entity);
         Task DeleteExpensesAsync(Guid id);
         Task<IEnumerable<ExpensesBO>> GetAllByNames();
     }

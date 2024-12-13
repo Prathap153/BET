@@ -1,5 +1,7 @@
 ﻿
+using BET.Application.Contracts.IRepositories;
 using BET.Domain.BO;
+using BET.Domain.Entities;
 
 namespace BET.Application.Features
 {
@@ -33,9 +35,20 @@ namespace BET.Application.Features
             return await _billGeneratedRepository.GetByIdBillGeneratedAsync(id);
         }
 
-        public async Task UpdateBillGeneratedAsync(BillGenerated entity)
+        public async Task UpdateBillGeneratedAsync(Guid id,BillGenerated  entity)
         {
-            await _billGeneratedRepository.UpdateBillGeneratedAsync(entity);
+
+            var getByBill = await _billGeneratedRepository.GetByIdBillGeneratedAsync(id);
+            if (getByBill != null)
+            {
+                getByBill.Project_Id = entity.Project_Id;
+                getByBill.Category_Id = entity.Category_Id;
+                getByBill.Amount_Generated = entity.Amount_Generated;
+                getByBill.ModifiedOn = DateTime.Now;
+                getByBill.ModifiedBy = "User2";
+                getByBill.IsActive = entity.IsActive;
+                await _billGeneratedRepository.UpdateBillGeneratedAsync(getByBill);
+            }
         }
 
         public async Task<IEnumerable<BillGeneratedBO>> GetAllByNames()

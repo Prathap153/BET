@@ -49,12 +49,12 @@ namespace BET.WebAPI.Controllers
         }
 
         [HttpPut("update/{id}")]
-        public async Task<IActionResult> UpdateAsync(Expenses entity)
+        public async Task<IActionResult> UpdateAsync(Guid id,Expenses entity)
         {
             var response = new Response<string>();
-            await _expensesService.UpdateExpensesAsync(entity);
+            await _expensesService.UpdateExpensesAsync(id,entity);
             response.Data = "Updated Successfully";
-            return Ok(response);
+            return Ok(response);    
         }
 
         [HttpGet("getAllByName")]

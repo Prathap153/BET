@@ -33,9 +33,19 @@ namespace BET.Application.Features
             return await _expensesRepository.GetByIdExpensesAsync(id);
         }
 
-        public async Task UpdateExpensesAsync(Expenses entity)
+        public async Task UpdateExpensesAsync(Guid id,Expenses entity)
         {
-            await _expensesRepository.UpdateExpensesAsync(entity);
+            var res = await _expensesRepository.GetByIdExpensesAsync(id);
+            if (res!= null)
+            {
+                res.Project_Id = entity.Project_Id;
+                res.Category_Id = entity.Category_Id;
+                res.Amount = entity.Amount;
+                res.ModifiedBy = "User2";
+                res.ModifiedOn = DateTime.Now;
+                res.IsActive = entity.IsActive;
+                await _expensesRepository.UpdateExpensesAsync(res);
+            }
         }
 
         public async Task<IEnumerable<ExpensesBO>> GetAllByNames()
